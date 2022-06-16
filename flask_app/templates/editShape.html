@@ -29,35 +29,32 @@
             <div class="col-9">
                 <div class="card bg-light mt-4">
                     <div class="card-header">
-                        <h5>Create New Shape</h5>
+                        <h5>Edit Shape: {{shape.shape_number}}</h5>
                     </div>
                     <div class="card-body">
-                        <form action="/createShape" method="post">
+                        <form action="/edit" method="post">
+                            <input type="hidden" name="id" id="id" value="{{shape.id}}">
                             <div class="form-group">
                                 <label for="shape_number">Shape Number:</label>
-                                <input type="text" name="shape_number" id="shape_number" class="form-control">
-                            </div>
-                            <div class="form-group mt-3">
-                                <label for="created_at">Date Created:</label>
-                                <input type="date" name="created_at" id="created_at" class="form-control">
+                                <input type="text" name="shape_number" id="shape_number" class="form-control" value="{{shape.shape_number}}">
                             </div>
                             <div class="form-group mt-3">
                                 <label for="customer">Customer:</label>
-                                <input type="text" name="customer" id="customer" class="form-control">
+                                <input type="text" name="customer" id="customer" class="form-control" value="{{shape.customer}}">
                             </div>
                             <div class="form-group mt-3">
                                 <label for="job_name">Job Name:</label>
-                                <input type="text" name="job_name" id="job_name" class="form-control">
+                                <input type="text" name="job_name" id="job_name" class="form-control" value="{{shape.job_name}}">
                             </div>
                             <div class="form-group mt-3">
                                 <label for="price">Price:</label>
-                                <input type="number" step="0.01" name="price" id="price" class="form-control" value="0">
+                                <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{shape.price}}">
                             </div>
                             <div class="form-group mt-3">
                                 <label for="notes">Notes:</label>
-                                <input type="text" name="notes" id="notes" class="form-control">
+                                <input type="text" name="notes" id="notes" class="form-control" value="{{shape.notes}}">
                             </div>
-                            <input class="btn btn-outline-primary mt-3" type="submit" value="Create">
+                            <input class="btn btn-outline-primary mt-3" type="submit" value="Update">
                         </form>
                     </div>
                 </div>

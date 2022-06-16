@@ -1,0 +1,11 @@
+.fitcol{
+    white-space: nowrap;
+    width: 1%;
+}
+
+.table-scroll{
+    display: block;
+    height: 750px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
