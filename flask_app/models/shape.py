@@ -59,4 +59,13 @@ class Shape:
                     WHERE id = %(id)s;"""
         connectToMySQL('shapelogschema').query_db(query, data)
 
-    
+    @staticmethod
+    def validate_shape(data):
+        is_valid = True
+        if(len(data['shape_number']) < 1):
+            flash("Shape number is required", "shape_shape_number")
+            is_valid = False
+        if not (bool(data['created_at'])):
+            flash("Creation date is required", "shape_created_at")
+            is_valid = False
+        return is_valid

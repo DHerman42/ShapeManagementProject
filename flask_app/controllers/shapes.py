@@ -1,6 +1,5 @@
 import os
 import datetime
-from textwrap import indent
 from flask import render_template, redirect, request, session, json
 from flask_app.models.shape import Shape
 from flask_app import app
@@ -14,9 +13,6 @@ def dashboard():
     f = open(filename)
     data = json.load(f)
     f.close()
-    
-    #data['factor_date'] = datetime.datetime.now()
-    #json.dump(data, open(filename, "w"), indent = 4)
 
     return render_template('dashboard.html', shapes = Shape.get_all_shapes(), shape_factor = data['shape_factor'])
 
@@ -42,6 +38,9 @@ def new_shape():
         'price': request.form['price'],
         'notes': request.form['notes']
     }
+
+    if not Shape.validate_shape(data):
+        return redirect('/new')
 
     Shape.create_shape(data)
     return redirect('/dashboard')
@@ -75,11 +74,15 @@ def change_shape():
     data = {
         'id': request.form['id'],
         'shape_number': request.form['shape_number'],
+        'created_at': request.form['created_at'],
         'customer': request.form['customer'],
         'job_name': request.form['job_name'],
         'price': request.form['price'],
         'notes': request.form['notes'],
     }
+
+    if not Shape.validate_shape(data):
+        return redirect('/edit/' + data['id'])
 
     Shape.update_shape(data)
     return redirect('/dashboard')

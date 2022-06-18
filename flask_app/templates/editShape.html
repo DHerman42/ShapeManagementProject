@@ -37,6 +37,13 @@
                             <div class="form-group">
                                 <label for="shape_number">Shape Number:</label>
                                 <input type="text" name="shape_number" id="shape_number" class="form-control" value="{{shape.shape_number}}">
+                                {% with messages = get_flashed_messages(category_filter=["shape_shape_number"]) %}
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <p class="text-danger">{{message}}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}
                             </div>
                             <div class="form-group mt-3">
                                 <label for="customer">Customer:</label>
@@ -54,6 +61,7 @@
                                 <label for="notes">Notes:</label>
                                 <input type="text" name="notes" id="notes" class="form-control" value="{{shape.notes}}">
                             </div>
+                            <input type="hidden" name="created_at" id="created_at" value="{{shape.created_at}}">
                             <input class="btn btn-outline-primary mt-3" type="submit" value="Update">
                         </form>
                     </div>
@@ -88,7 +96,7 @@
                                 <input class="form-control" disabled type="text" name="pricePerFoot" id="pricePerFoot">
                             </div>
                             <div class="form-group mt-3">
-                                <label for="pricePerShape">Price per shape:</label>
+                                <label for="pricePerShape">Price per piece:</label>
                                 <input class="form-control" disabled type="text" name="pricePerShape" id="pricePerShape">
                             </div>
                             <div class="mt-3">
